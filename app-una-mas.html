@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNA MÁS - Casino VR Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .casino-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 60px 40px;
+            background: rgba(26, 26, 46, 0.95);
+            border-radius: 25px;
+            border: 3px solid #CF8531;
+            box-shadow: 0 0 80px rgba(207, 133, 49, 0.4);
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .title {
+            font-size: 56px;
+            font-weight: bold;
+            color: #9D4EDD;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            color: #CF8531;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            animation: fadeIn 0.4s ease-out 0.1s both;
+        }
+        
+        .instruction {
+            font-size: 18px;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            color: #CF8531;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .option-btn {
+            padding: 35px 25px;
+            border: 3px solid #CF8531;
+            background: rgba(207, 133, 49, 0.1);
+            color: #CF8531;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-btn:hover {
+            background: rgba(207, 133, 49, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(207, 133, 49, 0.3);
+        }
+        
+        .option-btn.selected {
+            background: #CF8531;
+            color: #1a1a2e;
+            box-shadow: 0 0 30px rgba(207, 133, 49, 0.8);
+            transform: scale(1.08);
+        }
+        
+        .option-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .game-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: rgba(157, 78, 221, 0.1);
+            border: 3px solid #9D4EDD;
+            border-radius: 18px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #9D4EDD;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-value {
+            font-size: 56px;
+            font-weight: bold;
+            color: #CF8531;
+            text-shadow: 0 0 15px rgba(207, 133, 49, 0.4);
+        }
+        
+        .action-message {
+            text-align: center;
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            animation: slideDown 0.4s ease-out;
+        }
+        
+        .action-message.win {
+            background: rgba(0, 200, 100, 0.2);
+            border: 3px solid #00c864;
+            color: #00ff9f;
+        }
+        
+        .action-message.lose {
+            background: rgba(200, 50, 50, 0.2);
+            border: 3px solid #c83232;
+            color: #ff6b6b;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary, .btn-secondary, .btn-action {
+            padding: 20px 30px;
+            border: 3px solid #CF8531;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 150px;
+        }
+        
+        .btn-primary {
+            background: #CF8531;
+            color: #1a1a2e;
+            flex: 1;
+            min-height: 70px;
+            font-size: 24px;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: #e0a040;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(207, 133, 49, 0.5);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #CF8531;
+            flex: 1;
+            min-height: 70px;
+            font-size: 20px;
+            border-color: #9D4EDD;
+            color: #9D4EDD;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(157, 78, 221, 0.15);
+            color: #9D4EDD;
+        }
+        
+        .btn-action {
+            background: rgba(207, 133, 49, 0.1);
+            color: #CF8531;
+            border-color: #CF8531;
+            flex: 1;
+            min-height: 70px;
+            font-size: 22px;
+        }
+        
+        .btn-action:hover {
+            background: rgba(207, 133, 49, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            animation: confettiAnimate 2s ease-out forwards;
+            font-size: 40px;
+        }
+        
+        @keyframes confettiAnimate {
+            0% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(600px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .timer {
+            font-size: 64px;
+            font-weight: bold;
+            color: #CF8531;
+            text-shadow: 0 0 20px rgba(207, 133, 49, 0.5);
+            animation: pulse 1s infinite;
+        }
+        
+        .timer.paused {
+            animation: none;
+            opacity: 0.6;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+    </style>
+</head>
+<body>
+    <div class="casino-container">
+        <!-- PASO 1: Configuración -->
+        <div id="step-config" class="content">
+            <div class="header">
+                <div class="title">🎰 UNA MÁS</div>
+                <div class="subtitle">Experiencia VR Las Vegas</div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">💰 Límite de Fichas</div>
+                <div class="instruction">¿Cuántas fichas querés usar?</div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectChips(3)">
+                        <span class="icon">🎰</span>
+                        <span>3 fichas</span>
+                    </button>
+                    <button class="option-btn" onclick="selectChips(5)">
+                        <span class="icon">🎰</span>
+                        <span>5 fichas</span>
+                    </button>
+                    <button class="option-btn" onclick="selectChips(7)">
+                        <span class="icon">🎰</span>
+                        <span>7 fichas</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">⏱️ Límite de Tiempo</div>
+                <div class="instruction">¿Cuántos minutos querés jugar?</div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectTime(3)">
+                        <span class="icon">⏱️</span>
+                        <span>3 min</span>
+                    </button>
+                    <button class="option-btn" onclick="selectTime(5)">
+                        <span class="icon">⏱️</span>
+                        <span>5 min</span>
+                    </button>
+                    <button class="option-btn" onclick="selectTime(7)">
+                        <span class="icon">⏱️</span>
+                        <span>7 min</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn-primary" id="btn-start" disabled onclick="startGame()">ARRANCAR JUEGO</button>
+            </div>
+        </div>
+        
+        <!-- PASO 2: Juego -->
+        <div id="step-game" class="content" style="display: none;">
+            <div class="header">
+                <div class="title">⚡ EN JUEGO</div>
+                <div class="subtitle">Ronda activa - Clickea GANÉ o PERDÍ</div>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat-card">
+                    <div class="stat-label">Fichas Restantes</div>
+                    <div class="stat-value" id="chips-display">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Tiempo Restante</div>
+                    <div class="timer" id="timer-display">0:00</div>
+                </div>
+            </div>
+            
+            <div id="action-container"></div>
+            
+            <div class="buttons" id="game-buttons">
+                <button class="btn-action" id="btn-lose" onclick="handleAction('lose')" style="background: rgba(200, 50, 50, 0.1); border-color: #c83232; color: #ff6b6b; font-size: 26px;">
+                    😢 PERDÍ UNA FICHA
+                </button>
+                <button class="btn-action" id="btn-win" onclick="handleAction('win')" style="background: rgba(0, 200, 100, 0.1); border-color: #00c864; color: #00ff9f; font-size: 26px;">
+                    🎉 GANÉ UNA FICHA
+                </button>
+            </div>
+            
+            <div id="continue-container" class="buttons" style="display: none;">
+                <button class="btn-primary" onclick="continueGame()">CONTINUAR JUGANDO</button>
+                <button class="btn-secondary" onclick="reset()">REINICIAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let state = {
+            chips: null,
+            time: null,
+            chipsRemaining: 0,
+            timeRemaining: 0,
+            timerInterval: null,
+            isPaused: false,
+            lastAction: null
+        };
+
+        function selectChips(chips) {
+            state.chips = chips;
+            state.chipsRemaining = chips;
+            document.querySelectorAll('#step-config .section:nth-child(1) .option-btn').forEach(btn => btn.classList.remove('selected'));
+            event.target.closest('.option-btn').classList.add('selected');
+            updateStartButton();
+        }
+
+        function selectTime(time) {
+            state.time = time;
+            state.timeRemaining = time * 60;
+            document.querySelectorAll('#step-config .section:nth-child(2) .option-btn').forEach(btn => btn.classList.remove('selected'));
+            event.target.closest('.option-btn').classList.add('selected');
+            updateStartButton();
+        }
+
+        function updateStartButton() {
+            document.getElementById('btn-start').disabled = !state.chips || !state.time;
+        }
+
+        function startGame() {
+            state.chipsRemaining = state.chips;
+            state.timeRemaining = state.time * 60;
+            state.isPaused = false;
+            
+            document.getElementById('step-config').style.display = 'none';
+            document.getElementById('step-game').style.display = 'block';
+            document.getElementById('action-container').innerHTML = '';
+            document.getElementById('continue-container').style.display = 'none';
+            document.getElementById('game-buttons').style.display = 'flex';
+            document.getElementById('btn-lose').style.display = 'inline-block';
+            document.getElementById('btn-win').style.display = 'inline-block';
+            
+            updateDisplay();
+            startTimer();
+        }
+
+        function startTimer() {
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            
+            state.timerInterval = setInterval(() => {
+                if (!state.isPaused && state.timeRemaining > 0) {
+                    state.timeRemaining--;
+                    updateDisplay();
+                }
+                
+                if (state.timeRemaining <= 0) {
+                    clearInterval(state.timerInterval);
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function updateDisplay() {
+            document.getElementById('chips-display').textContent = state.chipsRemaining;
+            
+            const mins = Math.floor(state.timeRemaining / 60);
+            const secs = state.timeRemaining % 60;
+            const timeStr = `${mins}:${secs.toString().padStart(2, '0')}`;
+            document.getElementById('timer-display').textContent = timeStr;
+            
+            const timerEl = document.getElementById('timer-display');
+            if (state.isPaused) {
+                timerEl.classList.add('paused');
+            } else {
+                timerEl.classList.remove('paused');
+            }
+        }
+
+        function handleAction(action) {
+            state.isPaused = true;
+            state.lastAction = action;
+            
+            let resultText, cssClass;
+            if (action === 'win') {
+                state.chipsRemaining++;
+                resultText = '🎉 ¡GANASTE UNA FICHA!';
+                cssClass = 'win';
+            } else {
+                state.chipsRemaining--;
+                resultText = '😢 PERDISTE UNA FICHA';
+                cssClass = 'lose';
+            }
+            
+            document.getElementById('game-buttons').style.display = 'none';
+            document.getElementById('btn-lose').style.display = 'none';
+            document.getElementById('btn-win').style.display = 'none';
+            
+            const actionMsg = document.createElement('div');
+            actionMsg.className = 'action-message ' + cssClass;
+            actionMsg.textContent = resultText;
+            document.getElementById('action-container').innerHTML = '';
+            document.getElementById('action-container').appendChild(actionMsg);
+            
+            document.getElementById('continue-container').style.display = 'flex';
+            updateDisplay();
+            
+            if (action === 'win') {
+                createConfetti();
+            }
+        }
+
+        function continueGame() {
+            if (state.chipsRemaining <= 0) {
+                alert('Se acabaron tus fichas. Sesión finalizada.');
+                reset();
+                return;
+            }
+            
+            if (state.timeRemaining <= 0) {
+                alert('Se acabó el tiempo. Sesión finalizada.');
+                reset();
+                return;
+            }
+            
+            state.isPaused = false;
+            document.getElementById('action-container').innerHTML = '';
+            document.getElementById('continue-container').style.display = 'none';
+            document.getElementById('game-buttons').style.display = 'flex';
+            document.getElementById('btn-lose').style.display = 'inline-block';
+            document.getElementById('btn-win').style.display = 'inline-block';
+            updateDisplay();
+            startTimer();
+        }
+
+        function endGame() {
+            document.getElementById('btn-lose').disabled = true;
+            document.getElementById('btn-win').disabled = true;
+            alert('Sesión finalizada. Fichas restantes: ' + state.chipsRemaining);
+            reset();
+        }
+
+        function reset() {
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            state = {
+                chips: null,
+                time: null,
+                chipsRemaining: 0,
+                timeRemaining: 0,
+                timerInterval: null,
+                isPaused: false,
+                lastAction: null
+            };
+            
+            document.querySelectorAll('#step-config .option-btn').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('step-config').style.display = 'block';
+            document.getElementById('step-game').style.display = 'none';
+            document.getElementById('continue-container').style.display = 'none';
+            document.getElementById('game-buttons').style.display = 'flex';
+            updateStartButton();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = ['🎰', '💰', '✨', '🎯', '⭐'][Math.floor(Math.random() * 5)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = -50 + 'px';
+                confetti.style.color = ['#CF8531', '#9D4EDD'][Math.floor(Math.random() * 2)];
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }
+        }
+    </script>
+</body>
+</html>
