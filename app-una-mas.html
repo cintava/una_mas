@@ -18,6 +18,27 @@
             padding: 10px;
         }
         
+        .fullscreen-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #CF8531;
+            color: #1a1a2e;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .fullscreen-toggle:hover {
+            background: #e0a040;
+            transform: scale(1.05);
+        }
+        
         .casino-container {
             max-width: 900px;
             width: 100%;
@@ -286,6 +307,13 @@
                 border: 1.5px solid #CF8531;
             }
             
+            .fullscreen-toggle {
+                padding: 8px 12px;
+                font-size: 11px;
+                top: 8px;
+                right: 8px;
+            }
+            
             .title {
                 font-size: 28px;
                 margin-bottom: 8px;
@@ -379,6 +407,11 @@
                 padding: 20px 12px;
             }
             
+            .fullscreen-toggle {
+                padding: 7px 10px;
+                font-size: 10px;
+            }
+            
             .title {
                 font-size: 24px;
                 margin-bottom: 6px;
@@ -417,9 +450,16 @@
                 min-height: 40px;
             }
         }
+
+        /* Fullscreen */
+        :fullscreen {
+            background: #1a1a2e;
+        }
     </style>
 </head>
 <body>
+    <button class="fullscreen-toggle" id="fullscreen-btn" onclick="toggleFullscreen()">⛶ PANTALLA COMPLETA</button>
+    
     <div class="casino-container">
         <!-- PASO 1: Configuración -->
         <div id="step-config" class="content">
@@ -517,6 +557,21 @@
             isPaused: false,
             lastAction: null
         };
+
+        function toggleFullscreen() {
+            const btn = document.getElementById('fullscreen-btn');
+            const container = document.querySelector('.casino-container');
+            
+            if (!document.fullscreenElement) {
+                container.requestFullscreen().catch(err => {
+                    alert(`Error al entrar a pantalla completa: ${err.message}`);
+                });
+                btn.textContent = '✕ SALIR PANTALLA COMPLETA';
+            } else {
+                document.exitFullscreen();
+                btn.textContent = '⛶ PANTALLA COMPLETA';
+            }
+        }
 
         function selectChips(chips) {
             state.chips = chips;
