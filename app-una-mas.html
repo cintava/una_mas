@@ -15,17 +15,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
         }
         
         .casino-container {
             max-width: 900px;
             width: 100%;
-            padding: 60px 40px;
+            padding: 40px 20px;
             background: rgba(26, 26, 46, 0.95);
-            border-radius: 25px;
-            border: 3px solid #CF8531;
-            box-shadow: 0 0 80px rgba(207, 133, 49, 0.4);
+            border-radius: 15px;
+            border: 2px solid #CF8531;
+            box-shadow: 0 0 50px rgba(207, 133, 49, 0.3);
             animation: fadeIn 0.6s ease-out;
         }
         
@@ -36,7 +36,7 @@
         
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             animation: slideDown 0.5s ease-out;
         }
         
@@ -46,17 +46,17 @@
         }
         
         .title {
-            font-size: 56px;
+            font-size: 40px;
             font-weight: bold;
             color: #9D4EDD;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
         }
         
         .subtitle {
-            font-size: 24px;
+            font-size: 18px;
             color: #CF8531;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         
         .content {
@@ -64,41 +64,40 @@
         }
         
         .instruction {
-            font-size: 18px;
+            font-size: 14px;
             color: #e0e0e0;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-align: center;
             font-weight: 500;
         }
         
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
         
         .section-title {
-            font-size: 18px;
+            font-size: 14px;
             color: #CF8531;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
             font-weight: bold;
         }
         
         .options-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 30px;
+            gap: 12px;
         }
         
         .option-btn {
-            padding: 35px 25px;
-            border: 3px solid #CF8531;
+            padding: 20px 12px;
+            border: 2px solid #CF8531;
             background: rgba(207, 133, 49, 0.1);
             color: #CF8531;
-            border-radius: 18px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 16px;
             font-weight: bold;
             transition: all 0.3s ease;
             position: relative;
@@ -107,111 +106,110 @@
         
         .option-btn:hover {
             background: rgba(207, 133, 49, 0.2);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(207, 133, 49, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(207, 133, 49, 0.2);
         }
         
         .option-btn.selected {
             background: #CF8531;
             color: #1a1a2e;
-            box-shadow: 0 0 30px rgba(207, 133, 49, 0.8);
-            transform: scale(1.08);
+            box-shadow: 0 0 15px rgba(207, 133, 49, 0.6);
+            transform: scale(1.05);
         }
         
         .option-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.98);
         }
         
         .icon {
-            font-size: 40px;
-            margin-bottom: 12px;
+            font-size: 28px;
+            margin-bottom: 8px;
             display: block;
         }
         
         .game-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 15px;
+            margin-bottom: 30px;
         }
         
         .stat-card {
             background: rgba(157, 78, 221, 0.1);
-            border: 3px solid #9D4EDD;
-            border-radius: 18px;
-            padding: 30px;
+            border: 2px solid #9D4EDD;
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
         }
         
         .stat-label {
-            font-size: 16px;
+            font-size: 12px;
             color: #9D4EDD;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
         }
         
         .stat-value {
-            font-size: 56px;
+            font-size: 40px;
             font-weight: bold;
             color: #CF8531;
-            text-shadow: 0 0 15px rgba(207, 133, 49, 0.4);
+            text-shadow: 0 0 10px rgba(207, 133, 49, 0.3);
         }
         
         .action-message {
             text-align: center;
-            padding: 30px;
-            border-radius: 18px;
-            margin-bottom: 30px;
-            font-size: 28px;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 20px;
             font-weight: bold;
             animation: slideDown 0.4s ease-out;
         }
         
         .action-message.win {
             background: rgba(0, 200, 100, 0.2);
-            border: 3px solid #00c864;
+            border: 2px solid #00c864;
             color: #00ff9f;
         }
         
         .action-message.lose {
             background: rgba(200, 50, 50, 0.2);
-            border: 3px solid #c83232;
+            border: 2px solid #c83232;
             color: #ff6b6b;
         }
         
         .buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 40px;
+            gap: 10px;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
         
         .btn-primary, .btn-secondary, .btn-action {
-            padding: 20px 30px;
-            border: 3px solid #CF8531;
-            border-radius: 15px;
+            padding: 15px 20px;
+            border: 2px solid #CF8531;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            min-width: 150px;
+            letter-spacing: 0.5px;
+            flex: 1;
+            min-width: 120px;
         }
         
         .btn-primary {
             background: #CF8531;
             color: #1a1a2e;
-            flex: 1;
-            min-height: 70px;
-            font-size: 24px;
+            min-height: 50px;
         }
         
         .btn-primary:hover:not(:disabled) {
             background: #e0a040;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(207, 133, 49, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(207, 133, 49, 0.4);
         }
         
         .btn-primary:disabled {
@@ -222,38 +220,33 @@
         
         .btn-secondary {
             background: transparent;
-            color: #CF8531;
-            flex: 1;
-            min-height: 70px;
-            font-size: 20px;
-            border-color: #9D4EDD;
             color: #9D4EDD;
+            border-color: #9D4EDD;
+            min-height: 50px;
         }
         
         .btn-secondary:hover {
             background: rgba(157, 78, 221, 0.15);
-            color: #9D4EDD;
         }
         
         .btn-action {
             background: rgba(207, 133, 49, 0.1);
             color: #CF8531;
             border-color: #CF8531;
-            flex: 1;
-            min-height: 70px;
-            font-size: 22px;
+            min-height: 50px;
+            font-size: 15px;
         }
         
         .btn-action:hover {
             background: rgba(207, 133, 49, 0.2);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
         
         .confetti {
             position: fixed;
             pointer-events: none;
             animation: confettiAnimate 2s ease-out forwards;
-            font-size: 40px;
+            font-size: 30px;
         }
         
         @keyframes confettiAnimate {
@@ -262,16 +255,16 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(600px) rotate(720deg);
+                transform: translateY(500px) rotate(720deg);
                 opacity: 0;
             }
         }
         
         .timer {
-            font-size: 64px;
+            font-size: 48px;
             font-weight: bold;
             color: #CF8531;
-            text-shadow: 0 0 20px rgba(207, 133, 49, 0.5);
+            text-shadow: 0 0 15px rgba(207, 133, 49, 0.4);
             animation: pulse 1s infinite;
         }
         
@@ -282,7 +275,147 @@
         
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* RESPONSIVE - Mobile */
+        @media (max-width: 600px) {
+            .casino-container {
+                padding: 25px 15px;
+                border-radius: 12px;
+                border: 1.5px solid #CF8531;
+            }
+            
+            .title {
+                font-size: 28px;
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .instruction {
+                font-size: 12px;
+                margin-bottom: 15px;
+            }
+            
+            .section {
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 12px;
+                margin-bottom: 12px;
+                letter-spacing: 0.5px;
+            }
+            
+            .options-grid {
+                gap: 10px;
+            }
+            
+            .option-btn {
+                padding: 16px 10px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+            
+            .icon {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+            
+            .game-stats {
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .stat-card {
+                padding: 15px;
+                border-radius: 10px;
+                border: 1.5px solid #9D4EDD;
+            }
+            
+            .stat-label {
+                font-size: 10px;
+                margin-bottom: 6px;
+            }
+            
+            .stat-value {
+                font-size: 32px;
+            }
+            
+            .timer {
+                font-size: 36px;
+            }
+            
+            .action-message {
+                padding: 15px;
+                font-size: 16px;
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+            
+            .buttons {
+                gap: 8px;
+                margin-top: 15px;
+            }
+            
+            .btn-primary, .btn-secondary, .btn-action {
+                padding: 12px 15px;
+                font-size: 14px;
+                border-radius: 10px;
+                min-height: 45px;
+                letter-spacing: 0.3px;
+            }
+            
+            .btn-action {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .casino-container {
+                padding: 20px 12px;
+            }
+            
+            .title {
+                font-size: 24px;
+                margin-bottom: 6px;
+            }
+            
+            .subtitle {
+                font-size: 12px;
+            }
+            
+            .instruction {
+                font-size: 11px;
+                margin-bottom: 12px;
+            }
+            
+            .option-btn {
+                padding: 14px 8px;
+                font-size: 13px;
+            }
+            
+            .icon {
+                font-size: 20px;
+                margin-bottom: 4px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .timer {
+                font-size: 32px;
+            }
+            
+            .btn-primary, .btn-secondary, .btn-action {
+                padding: 10px 12px;
+                font-size: 12px;
+                min-height: 40px;
+            }
         }
     </style>
 </head>
@@ -301,15 +434,15 @@
                 <div class="options-grid">
                     <button class="option-btn" onclick="selectChips(3)">
                         <span class="icon">🎰</span>
-                        <span>3 fichas</span>
+                        <span>3</span>
                     </button>
                     <button class="option-btn" onclick="selectChips(5)">
                         <span class="icon">🎰</span>
-                        <span>5 fichas</span>
+                        <span>5</span>
                     </button>
                     <button class="option-btn" onclick="selectChips(7)">
                         <span class="icon">🎰</span>
-                        <span>7 fichas</span>
+                        <span>7</span>
                     </button>
                 </div>
             </div>
@@ -342,16 +475,16 @@
         <div id="step-game" class="content" style="display: none;">
             <div class="header">
                 <div class="title">⚡ EN JUEGO</div>
-                <div class="subtitle">Ronda activa - Clickea GANÉ o PERDÍ</div>
+                <div class="subtitle">Ronda activa</div>
             </div>
             
             <div class="game-stats">
                 <div class="stat-card">
-                    <div class="stat-label">Fichas Restantes</div>
+                    <div class="stat-label">Fichas</div>
                     <div class="stat-value" id="chips-display">-</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Tiempo Restante</div>
+                    <div class="stat-label">Tiempo</div>
                     <div class="timer" id="timer-display">0:00</div>
                 </div>
             </div>
@@ -359,16 +492,16 @@
             <div id="action-container"></div>
             
             <div class="buttons" id="game-buttons">
-                <button class="btn-action" id="btn-lose" onclick="handleAction('lose')" style="background: rgba(200, 50, 50, 0.1); border-color: #c83232; color: #ff6b6b; font-size: 26px;">
-                    😢 PERDÍ UNA FICHA
+                <button class="btn-action" id="btn-lose" onclick="handleAction('lose')" style="background: rgba(200, 50, 50, 0.1); border-color: #c83232; color: #ff6b6b;">
+                    😢 PERDÍ
                 </button>
-                <button class="btn-action" id="btn-win" onclick="handleAction('win')" style="background: rgba(0, 200, 100, 0.1); border-color: #00c864; color: #00ff9f; font-size: 26px;">
-                    🎉 GANÉ UNA FICHA
+                <button class="btn-action" id="btn-win" onclick="handleAction('win')" style="background: rgba(0, 200, 100, 0.1); border-color: #00c864; color: #00ff9f;">
+                    🎉 GANÉ
                 </button>
             </div>
             
             <div id="continue-container" class="buttons" style="display: none;">
-                <button class="btn-primary" onclick="continueGame()">CONTINUAR JUGANDO</button>
+                <button class="btn-primary" onclick="continueGame()">CONTINUAR</button>
                 <button class="btn-secondary" onclick="reset()">REINICIAR</button>
             </div>
         </div>
@@ -538,12 +671,12 @@
         }
 
         function createConfetti() {
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 20; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.textContent = ['🎰', '💰', '✨', '🎯', '⭐'][Math.floor(Math.random() * 5)];
                 confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.top = -50 + 'px';
+                confetti.style.top = -30 + 'px';
                 confetti.style.color = ['#CF8531', '#9D4EDD'][Math.floor(Math.random() * 2)];
                 document.body.appendChild(confetti);
                 setTimeout(() => confetti.remove(), 2000);
